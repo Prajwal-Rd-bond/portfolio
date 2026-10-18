@@ -45,46 +45,10 @@ export const experience = [
 ];
 
 export const projects = [
-  {
-    title: "Astral Explorer",
-    subtitle: "Interactive 3D Solar System Simulation",
-    description:
-      "An interactive 3D Solar System simulation with real-time planetary visualization, click-to-zoom interactions, orbital animations, cinematic camera transitions, and dynamic lighting.",
-    tags: ["React Three Fiber", "Three.js", "React"],
-    highlight: true,
-  },
-  {
-    title: "Landslide Detection",
-    subtitle: "YOLOv8 Instance Segmentation Prototype",
-    description:
-      "A fork-based research prototype exploring landslide segmentation in imagery with YOLOv8. The repository documents upstream provenance, a small test-set evaluation, and limits on field use.",
-    tags: ["YOLOv8", "Computer Vision", "Instance Segmentation"],
-    highlight: true,
-  },
-  {
-    title: "AI TravelMate Assistant",
-    subtitle: "ML-Powered Travel Planning",
-    description:
-      "An ML-powered travel assistant delivering personalized destination recommendations, using real-time data extraction and web scraping for dynamic travel insights.",
-    tags: ["Python", "ML", "Web Scraping"],
-    highlight: false,
-  },
-  {
-    title: "AI Text Summarizer",
-    subtitle: "Extractive NLP Summarization",
-    description:
-      "An NLP-based automatic summarization system using TF-IDF, tokenization, and extractive techniques to generate concise summaries while preserving context.",
-    tags: ["NLP", "Python", "TF-IDF"],
-    highlight: false,
-  },
-  {
-    title: "DBMS Banking Management System",
-    subtitle: "Database-Driven Banking Platform",
-    description:
-      "A database-driven banking system supporting deposits, withdrawals, transfers, and account operations with structured schemas and robust transaction handling.",
-    tags: ["SQL", "MySQL", "DBMS"],
-    highlight: false,
-  },
+  { title: "PharmaGuard", subtitle: "Human-in-the-loop drug-safety review", category: "LLM / RAG", description: "A traceable AI review pipeline connecting retrieval, extraction and human approval. Research prototype with synthetic cases and simulated regulatory gateways.", tags: ["FastAPI", "Qdrant", "React", "LLM pipelines"], url: "https://github.com/Prajwal-Rd-bond/pharmaguard" },
+  { title: "Multimodal Medical Imaging", subtitle: "Interpretable computer vision", category: "VISION", description: "Chest X-ray and dermoscopy research with DenseNet121, Grad-CAM, calibration and out-of-distribution experiments. Research demonstration, not a diagnostic tool.", tags: ["PyTorch", "DenseNet121", "Grad-CAM", "FastAPI"], url: "https://github.com/Prajwal-Rd-bond/multimodal-medical-imaging-assistant" },
+  { title: "FlyRank ML Workspace", subtitle: "Search data, embeddings & intent", category: "APPLIED ML", description: "Internship learning workspace for data wrangling, embeddings, clustering and search intent. Includes attributed starter and reference material.", tags: ["Python", "Embeddings", "Clustering"], url: "https://github.com/Prajwal-Rd-bond/flyrank-ml-internship-starter" },
+  { title: "Astral Explorer", subtitle: "An interactive journey through space", category: "CREATIVE WEB", description: "A 3D solar-system experience exploring orbital movement, dynamic lighting and cinematic camera interactions in the browser.", tags: ["React", "Three.js", "React Three Fiber"], url: "https://github.com/Prajwal-Rd-bond/astral-react" },
 ];
 
 export const skills = [
