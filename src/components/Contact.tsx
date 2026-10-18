@@ -26,8 +26,7 @@ export default function Contact() {
           <span className="text-gradient">intelligent together.</span>
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-zinc-400">
-          I&apos;m open to AI engineering and software development internships and
-          collaborations. Drop me a line — I usually reply within a day.
+          Seeking paid UAE AI/ML internships for January–June 2027. I hold a valid UAE residence visa and do not need residence visa sponsorship.
         </p>
 
         <div className="relative mt-9 flex flex-wrap items-center justify-center gap-4">
