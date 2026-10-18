@@ -19,11 +19,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Prajwal R D — AI & ML Engineer",
+  title: "Prajwal Ravi Devadiga — AI & ML Engineer",
   description:
-    "Portfolio of Prajwal R D — AI & ML undergraduate specializing in anomaly detection, deep learning, computer vision, and interactive web applications.",
+    "Portfolio of Prajwal Ravi Devadiga — AI & ML undergraduate specializing in anomaly detection, deep learning, computer vision, and interactive web applications.",
   keywords: [
-    "Prajwal R D",
+    "Prajwal Ravi Devadiga",
     "AI Engineer",
     "Machine Learning",
     "Portfolio",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "Computer Vision",
   ],
   openGraph: {
-    title: "Prajwal R D — AI & ML Engineer",
+    title: "Prajwal Ravi Devadiga — AI & ML Engineer",
     description:
       "AI & ML undergraduate specializing in anomaly detection, deep learning, computer vision, and interactive web applications.",
     type: "website",
