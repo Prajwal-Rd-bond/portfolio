@@ -7,7 +7,7 @@ export default function Footer() {
         <p>
           © {new Date().getFullYear()} {profile.name}. Built with Next.js &amp; Framer Motion.
         </p>
-        <p className="font-mono text-xs text-zinc-600">Designed &amp; developed from scratch.</p>
+        <p className="font-mono text-xs text-zinc-600">Always experimenting. Always building.</p>
       </div>
     </footer>
   );
