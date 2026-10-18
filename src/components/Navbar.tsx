@@ -92,6 +92,8 @@ export default function Navbar() {
 
         <button
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((o) => !o)}
           className="rounded-full p-2 text-white md:hidden"
         >
@@ -106,6 +108,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
+            id="mobile-navigation"
             className="overflow-hidden border-t border-white/10 bg-background/95 backdrop-blur-xl md:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-4">
