@@ -1,4 +1,4 @@
-# Prajwal R D — Portfolio
+# Prajwal Ravi Devadiga — Portfolio
 
 A personal portfolio site built with Next.js, Tailwind CSS, and Framer Motion.
 
@@ -12,9 +12,14 @@ A personal portfolio site built with Next.js, Tailwind CSS, and Framer Motion.
 All personal content (name, experience, projects, skills, certifications) lives in
 `src/lib/data.ts` — edit that one file to update the site.
 
-Currently uses placeholder GitHub/LinkedIn URLs (`https://github.com/` and
-`https://linkedin.com/`) and a resume note pulled from your resume — update the
-`profile` object in `src/lib/data.ts` with your real profile links.
+The profile uses verified GitHub and LinkedIn links. The selected-work section links directly to repositories and describes research limitations and starter provenance.
+
+## Interaction design
+- Pointer-responsive orbital hero and project cards (mouse only).
+- Animated orbital paths, scan sweep and search-data bars.
+- Scroll progress, section reveals and an active navigation indicator.
+- Responsive layouts, keyboard focus, skip link and reduced-motion support.
+- CSS/SVG-style artwork; no additional runtime dependencies or large media downloads.
 
 ## Local development
 
