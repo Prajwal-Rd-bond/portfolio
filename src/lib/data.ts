@@ -1,13 +1,13 @@
 export const profile = {
-  name: "Prajwal R D",
+  name: "Prajwal Ravi Devadiga",
   initials: "PRD",
   role: "AI & ML Engineer",
   tagline: "Building intelligent systems — from anomaly detection to immersive web experiences.",
   location: "Karnataka, India",
   email: "prajwalrd011@gmail.com",
   phone: "+91 8073633169",
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/",
+  github: "https://github.com/Prajwal-Rd-bond",
+  linkedin: "https://www.linkedin.com/in/prajwal-r-devadiga-0b1357301",
   resumeNote:
     "AI & ML undergraduate with experience in anomaly detection, deep learning, computer vision, and interactive web applications through academic and industry projects. Skilled in Python, TensorFlow, Streamlit, React, and predictive analytics with a strong interest in AI engineering and intelligent systems.",
 };
@@ -15,7 +15,7 @@ export const profile = {
 export const education = {
   school: "N.M.A.M. Institute of Technology (Nitte)",
   degree: "B.Tech in Artificial Intelligence and Machine Learning",
-  period: "Expected 2027",
+  period: "Expected September 2027",
   coursework: ["Machine Learning", "Deep Learning", "NLP", "Data Mining", "DSA", "OOP"],
 };
 
@@ -55,10 +55,10 @@ export const projects = [
   },
   {
     title: "Landslide Detection",
-    subtitle: "Semantic Segmentation with U-Net",
+    subtitle: "YOLOv8 Instance Segmentation Prototype",
     description:
-      "A deep learning-based segmentation model using a U-Net CNN architecture to detect landslide-prone regions from satellite imagery, evaluated with Precision, Recall, F1-score, and mIoU.",
-    tags: ["TensorFlow", "Computer Vision", "U-Net"],
+      "A fork-based research prototype exploring landslide segmentation in imagery with YOLOv8. The repository documents upstream provenance, a small test-set evaluation, and limits on field use.",
+    tags: ["YOLOv8", "Computer Vision", "Instance Segmentation"],
     highlight: true,
   },
   {
