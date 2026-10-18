@@ -1,131 +1,28 @@
 "use client";
-
-import { motion } from "framer-motion";
-import { ArrowDown, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./icons";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { profile } from "@/lib/data";
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.15 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
+const reveal = { hidden: { opacity: 0, y: 35 }, show: { opacity: 1, y: 0, transition: { duration: .85, ease: [.22, 1, .36, 1] as const } } };
 export default function Hero() {
-  return (
-    <section id="top" className="relative flex min-h-screen items-center px-6 pt-28">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="mx-auto w-full max-w-6xl"
-      >
-        <motion.div
-          variants={item}
-          className="mb-6 inline-flex items-center gap-2 rounded-full card-border bg-white/5 px-4 py-1.5 font-mono text-xs tracking-wide text-zinc-300"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          Open to AI Engineering &amp; SDE internships
-        </motion.div>
-
-        <motion.h1
-          variants={item}
-          className="font-[family-name:var(--font-display)] text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
-        >
-          Hi, I&apos;m {profile.name.split(" ")[0]}{" "}
-          <span className="text-zinc-500">{profile.name.split(" ").slice(1).join(" ")}</span>
-          <br />
-          <span className="text-gradient">{profile.role}.</span>
-        </motion.h1>
-
-        <motion.p variants={item} className="mt-6 max-w-2xl text-lg text-zinc-400 md:text-xl">
-          {profile.tagline}
-        </motion.p>
-
-        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="#projects"
-            className="group relative overflow-hidden rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-105"
-          >
-            View my work
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full card-border bg-white/5 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-          >
-            Get in touch
-          </a>
-
-          <div className="ml-2 flex items-center gap-3 pl-2">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="rounded-full p-2.5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <GithubIcon size={19} />
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="rounded-full p-2.5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <LinkedinIcon size={19} />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="rounded-full p-2.5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <Mail size={19} />
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div variants={item} className="mt-20 flex flex-wrap gap-x-10 gap-y-4 text-sm text-zinc-500">
-          <div>
-            <span className="block font-[family-name:var(--font-display)] text-2xl font-semibold text-white">5+</span>
-            Projects shipped
-          </div>
-          <div>
-            <span className="block font-[family-name:var(--font-display)] text-2xl font-semibold text-white">2</span>
-            Internships completed
-          </div>
-          <div>
-            <span className="block font-[family-name:var(--font-display)] text-2xl font-semibold text-white">4</span>
-            Certifications earned
-          </div>
-        </motion.div>
+  const reduced = useReducedMotion();
+  const x = useMotionValue(0), y = useMotionValue(0);
+  const rx = useSpring(useTransform(y, [-.5, .5], [10, -10])), ry = useSpring(useTransform(x, [-.5, .5], [-14, 14]));
+  return <section id="top" className="hero-section" onPointerMove={e => { if (e.pointerType !== "mouse" || reduced) return; const r=e.currentTarget.getBoundingClientRect(); x.set((e.clientX-r.left)/r.width-.5); y.set((e.clientY-r.top)/r.height-.5); }} onPointerLeave={()=>{x.set(0);y.set(0);}}>
+    <div className="hero-grid mx-auto w-full max-w-6xl">
+      <motion.div initial="hidden" animate="show" variants={{show:{transition:{staggerChildren:.12}}}} className="hero-copy">
+        <motion.p variants={reveal} className="eyebrow"><span className="status-dot"/> Available Jan—Jun 2027 · UAE</motion.p>
+        <motion.p variants={reveal} className="hero-intro">Hello, I’m {profile.name}.</motion.p>
+        <motion.h1 variants={reveal}>Turning data<br/>into <span className="text-gradient">possibility.</span></motion.h1>
+        <motion.p variants={reveal} className="hero-description">Applied AI, computer vision &amp; retrieval systems.<br/>From model experiments to experiences people can use.</motion.p>
+        <motion.div variants={reveal} className="mt-9 flex flex-wrap gap-3"><a className="primary-cta" href="#projects">Explore selected work <ArrowUpRight size={18}/></a><a className="secondary-cta" href="#contact">Let’s connect <span>↗</span></a></motion.div>
+        <motion.div variants={reveal} className="hero-footnote"><span>AI / ML undergraduate</span><span>UAE residence visa</span><span>Graduating Sep 2027</span></motion.div>
       </motion.div>
-
-      <motion.a
-        href="#about"
-        aria-label="Scroll down"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="rounded-full card-border bg-white/5 p-2 text-zinc-400"
-        >
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.a>
-    </section>
-  );
+      <motion.div className="orbital-scene" aria-hidden="true" initial={{opacity:0,scale:.8}} animate={{opacity:1,scale:1}} transition={{duration:1.4}} style={{rotateX:reduced?0:rx,rotateY:reduced?0:ry}}>
+        <div className="orbital-coordinate">PRD / SYSTEMS IN MOTION</div><div className="orbital-halo"/><div className="orbital-globe"><div className="globe-grid"/>{[0,1,2,3,4].map(i=><div className="globe-latitude" key={i} style={{top:`${18+i*16}%`,width:`${68+Math.sin(i/4*Math.PI)*30}%`}}/>)}<div className="globe-shine"/></div>
+        <div className="orbit orbit-one"><i/></div><div className="orbit orbit-two"><i/></div><div className="orbit orbit-three"><i/></div>
+        <div className="orbital-label label-one"><span>01</span> COMPUTER VISION</div><div className="orbital-label label-two"><span>02</span> RETRIEVAL SYSTEMS</div><div className="orbital-label label-three"><span>03</span> APPLIED AI</div><div className="orbital-caption">IDEA → EXPERIMENT → APPLICATION</div>
+      </motion.div>
+    </div>
+    <a href="#projects" className="hero-scroll"><ArrowDown size={14}/> Scroll to explore <span>01 / 05</span></a>
+  </section>;
 }
