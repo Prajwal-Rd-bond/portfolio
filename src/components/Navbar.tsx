@@ -1,29 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/lib/data";
 
 const LINKS = [
+  { href: "#projects", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
+
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
+  const reduced = useReducedMotion();
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => { setScrolled(window.scrollY > 20); if (window.scrollY < 100) setActive(""); };
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onEscape = (event: KeyboardEvent) => { if (event.key === "Escape") { setOpen(false); menuButton.current?.focus({ preventScroll: true }); } };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [open]);
 
   useEffect(() => {
     const sections = LINKS.map((l) => document.querySelector(l.href)).filter(
@@ -33,21 +43,23 @@ export default function Navbar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
+            setActive(entry.target.id === "top" ? "" : `#${entry.target.id}`);
           }
         });
       },
       { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
     );
+    const top = document.getElementById("top");
+    if (top) sections.push(top);
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: reduced ? 0 : -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+      transition={{ duration: reduced ? .15 : .8, ease: [0.22, 1, 0.36, 1] as const }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled ? "bg-background/70 backdrop-blur-xl card-border border-b" : "bg-transparent"
       }`}
@@ -55,6 +67,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#top"
+          onClick={() => setOpen(false)}
           className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-white"
         >
           {profile.initials}
@@ -66,6 +79,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
+                aria-current={active === link.href ? "location" : undefined}
                 className={`relative rounded-full px-4 py-2 text-sm transition-colors ${
                   active === link.href ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
@@ -91,6 +105,7 @@ export default function Navbar() {
         </a>
 
         <button
+          ref={menuButton}
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-navigation"
@@ -107,7 +122,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: reduced ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] as const }}
             id="mobile-navigation"
             className="overflow-hidden border-t border-white/10 bg-background/95 backdrop-blur-xl md:hidden"
           >
